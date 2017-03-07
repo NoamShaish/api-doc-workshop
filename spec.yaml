@@ -5,11 +5,11 @@ swagger: "2.0"
 ################################################################################
 info:
   version: "1.1"
-  title: Agent Manager APIs
+  title: Operational Real-time APIs
 # during dev, should point to your local machine
 host: "/"
 # basePath prefixes all resource paths
-basePath: /1.1
+basePath: /operations/api/account
 #
 schemes:
   # tip: remove http to make production-grade
@@ -26,7 +26,7 @@ produces:
 #                                           Paths                              #
 ################################################################################
 paths:
-  /operations/api/account/{accountID}/queuehealth:
+  /{accountID}/queuehealth:
     get:
       description: Retrieving Queue Health Data by Account and Skills
       parameters:
@@ -38,30 +38,37 @@ paths:
           format: ^[a-zA-Z0-9_]{1,20}$
         - name: timeframe
           in: query
-          description: > The time range (in minutes) by which the data can be filtered. 
+          description: > 
+           The time range (in minutes) by which the data can be filtered. 
            Where end time is the current time and the start time  = end time - timeframe. 
-           The maximum timeframe value is 1440
+           The maximum timeframe value is 1440 (24 hours).
           required: true
           type: integer
-        - name: skillIds
-          in: query
-          description: 'When provided, metrics on the response will be grouped by the requested skills. When not provided, metrics on the response will be calculated at the account level. You can provide one or more skill IDs. For example: skillIds=4,15,3 . To retrieve all skills active for the time period use skillIds=all, comma seperated integers'
-          required: false
-          type: string
-        - name: interval
-          in: query
-          description: 'Interval size in minutes. When provided, the returned data will be aggregated by intervals of the requested size. The interval has to be smaller or equal to the time frame and also a divisor of the time frame. For example: timeframe=60&interval=30 (correct), timeframe=60&interval=61 (bad request), timeframe=60&interval=31 (bad request)'
-          required: false
-          type: integer
-        - name: trim_user
-          in: query
-          description: 'When set to either true, t or 1, each tweet returned in a timeline will include a user object'
-          required: false
-          type: string
         - name: v
           in: query
           description: 'Version of API. e.g. v=1'
           required: true
+          type: integer
+        - name: skillIds
+          in: query
+          description: >
+           	When provided, metrics on the response will be grouped by the requested skills. 
+            When not provided, metrics on the response will be calculated at the account level. 
+            You can provide one or more skillIDs, Example: skillIds=4,15,3. 
+            To retrieve all skills active for the time period, use skillIds=all.
+          required: false
+          type: string
+        - name: interval
+          in: query
+          description: >
+           Interval size in minutes. 
+           When provided, the returned data will be aggregated by intervals of the requested size. 
+           The interval has to be smaller or equal to the time frame and also a divisor of the time frame. 
+           Example: 
+           timeframe=60&interval=30 (correct) 
+           timeframe=60&interval=61 (bad request) 
+           timeframe=60&interval=31 (bad request)
+          required: false
           type: integer
       responses:
         "200":
@@ -69,19 +76,19 @@ paths:
           schema:
             type: array
             items:
-              $ref: '#/definitions/Tweets'
+              $ref: '#/definitions/Queuehealth'
 
 ################################################################################
 #                                 Definitions                                  #
 ################################################################################
 definitions:
-  Tweets:
+  Queuehealth:
     type: object
     properties:
-      contributors:
+      skillsMetrics:
         type: array
         items:
-          $ref: '#/definitions/Contributors'
+          $ref: '#/definitions/SkillMetric'
       coordinates:
         $ref: '#/definitions/Coordinates'
       created_at:
@@ -147,3 +154,8 @@ definitions:
           type: string
       withheld_scope:
         type: string
+  SkillMetric:
+    type: object
+    properties:
+      name:
+        type: String
