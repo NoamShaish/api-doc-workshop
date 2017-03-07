@@ -38,7 +38,9 @@ paths:
           format: ^[a-zA-Z0-9_]{1,20}$
         - name: timeframe
           in: query
-          description: 'The time range (in minutes) by which the data can be filtered. Where: end time is the current time and the start time  = end time - timeframe. The maximum timeframe value is 1440'
+          description: > The time range (in minutes) by which the data can be filtered. 
+           Where end time is the current time and the start time  = end time - timeframe. 
+           The maximum timeframe value is 1440
           required: true
           type: integer
         - name: skillIds
