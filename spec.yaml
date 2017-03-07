@@ -52,10 +52,10 @@ paths:
         - name: skillIds
           in: query
           description: >
-           	When provided, metrics on the response will be grouped by the requested skills. 
-            When not provided, metrics on the response will be calculated at the account level. 
-            You can provide one or more skillIDs, Example: skillIds=4,15,3. 
-            To retrieve all skills active for the time period, use skillIds=all.
+           When provided, metrics on the response will be grouped by the requested skills. 
+           When not provided, metrics on the response will be calculated at the account level. 
+           You can provide one or more skillIDs, Example: skillIds=4,15,3. 
+           To retrieve all skills active for the time period, use skillIds=all.
           required: false
           type: string
         - name: interval
