@@ -29,9 +29,6 @@ paths:
   /operations/api/account/{accountID}/queuehealth:
     get:
       Retrieving Queue Health Data by Account and Skills
-      security:
-       - oauth:
-         - basic
       parameters:
         - name: timeframe
           in: query
