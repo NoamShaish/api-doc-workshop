@@ -30,6 +30,11 @@ paths:
     get:
       description: Retrieving Queue Health Data by Account and Skills
       parameters:
+        - name: accountID
+          in: path
+          description: 'Account Id'
+          required: true
+          type: string
         - name: timeframe
           in: query
           description: 'The time range (in minutes) by which the data can be filtered. Where: end time is the current time and the start time  = end time - timeframe. The maximum timeframe value is 1440'
