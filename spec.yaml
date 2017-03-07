@@ -81,16 +81,16 @@ paths:
 ################################################################################
 #                                 Definitions                                  #
 ################################################################################
-definitions:
+ definitions:
   Queuehealth:
-    type: object
-    properties:
-      skillsMetrics:
-        type: array
-        items:
-          $ref: '#/definitions/SkillMetric'
+   type: object
+   properties:
+    skillsMetrics:
+     type: array
+     items:
+      $ref: '#/definitions/SkillMetric'
   SkillMetric:
-    type: object
-    properties:
-      name:
-        type: String
+   type: object
+   properties:
+    name:
+     type: String
