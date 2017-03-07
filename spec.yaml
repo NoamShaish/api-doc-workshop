@@ -32,25 +32,17 @@ paths:
       parameters:
         - name: timeframe
           in: query
-          description: The time range (in minutes) by which the
-                       data can be filtered. Where: end time is the current time and the start time  = end time - timeframe. The maximum timeframe value is 1440
+          description: The time range (in minutes) by which the data can be filtered. Where: end time is the current time and the start time  = end time - timeframe. The maximum timeframe value is 1440
           required: true
           type: integer
         - name: skillIds
           in: query
-          description: When provided, metrics on the response will be grouped by the requested skills. When not provided, metrics on the response will be calculated at the account level. You can provide one or more skill IDs. For example: skillIds=4,15,3 . To retrieve all skills active
-                       for the time period use skillIds=all, comma seperated integers
+          description: When provided, metrics on the response will be grouped by the requested skills. When not provided, metrics on the response will be calculated at the account level. You can provide one or more skill IDs. For example: skillIds=4,15,3 . To retrieve all skills active for the time period use skillIds=all, comma seperated integers
           required: false
           type: string
         - name: interval
           in: query
-          description: Interval size in minutes. When provided, the
-                       returned data will be aggregated by intervals of the requested size. The interval has to be
-                       smaller or equal to the time frame and also a
-                       divisor of the time frame. For example:
-                       timeframe=60&interval=30 (correct)
-                       timeframe=60&interval=61 (bad request)
-                       timeframe=60&interval=31 (bad request)
+          description: Interval size in minutes. When provided, the returned data will be aggregated by intervals of the requested size. The interval has to be smaller or equal to the time frame and also a divisor of the time frame. For example: timeframe=60&interval=30 (correct), timeframe=60&interval=61 (bad request), timeframe=60&interval=31 (bad request)
           required: false
           type: integer
         - name: trim_user
