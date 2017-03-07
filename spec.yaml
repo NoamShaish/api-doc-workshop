@@ -26,9 +26,9 @@ produces:
 #                                           Paths                              #
 ################################################################################
 paths:
-  /operations/api/account/accountID/queuehealth:
+  /operations/api/account/{accountID}/queuehealth:
     get:
-      Retrieving Queue Health Data by Account and Skills
+      description: Retrieving Queue Health Data by Account and Skills
       parameters:
         - name: timeframe
           in: query
